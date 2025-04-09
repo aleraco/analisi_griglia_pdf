@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Carica Turni - PDF</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        .upload-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-top: 5vh;
+            max-width: 600px;
+        }
+        .custom-file-input {
+            opacity: 0;
+            position: absolute;
+            z-index: -1;
+        }
+        .custom-file-label {
+            background: #e9ecef;
+            border: 2px dashed #6c757d;
+            padding: 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .custom-file-label:hover {
+            background: #dee2e6;
+            border-color: #0d6efd;
+        }
+        .upload-icon {
+            font-size: 3rem;
+            color: #0d6efd;
+            margin-bottom: 1rem;
+        }
+        h1 {
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+        .btn-upload {
+            background: #0d6efd;
+            color: white;
+            padding: 0.75rem 2rem;
+            font-size: 1.1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-upload:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(13, 110, 253, 0.4);
+        }
+    </style>
+</head>
+<body class="d-flex justify-content-center">
+    <div class="upload-container text-center">
+        <div class="mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-file-earmark-pdf upload-icon" viewBox="0 0 16 16">
+                <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
+                <path d="M4.603 14.087a.81.81 0 0 1-.438-.42c-.195-.388-.13-.776.08-1.102.198-.307.526-.568.897-.787a7.68 7.68 0 0 1 1.482-.645 19.697 19.697 0 0 0 1.062-2.227 7.269 7.269 0 0 1-.43-1.295c-.086-.4-.119-.796-.046-1.136.075-.354.274-.672.65-.823.192-.077.4-.12.602-.077.28.058.546.23.704.544.17.34.19.757.04 1.12-.138.35-.366.654-.728 1.015l-.783.78.792.784c.348.348.618.662.785.98.14.27.175.54.112.798-.057.254-.234.503-.545.667-.28.15-.592.194-.86.138a1.517 1.517 0 0 1-.888-.785 5.84 5.84 0 0 0-.539-1.022 14.807 14.807 0 0 0-1.376.981h-.056l-.008-.003c-.2.125-.35.26-.444.401a.715.715 0 0 0-.088.52c.098.276.358.543.754.594.331.041.564-.162.778-.396.12-.13.201-.263.244-.386.036-.1.045-.204.045-.32a.779.779 0 0 0-.127-.422.841.841 0 0 0-.325-.315l-.004-.002h-.005l-.002-.001v-.001l-.001-.001-.002-.002-.003-.002-.002-.004-.003-.004-.005-.003-.004-.007-.003-.004-.003-.007-.004-.007-.001-.004-.005-.009-.004-.005-.005-.011-.005-.005-.006-.006-.006-.008-.005-.004-.007-.011-.008-.009-.007-.008-.011-.013-.005-.005-.009-.012-.01-.01-.008-.008-.012-.015-.008-.008-.013-.017-.009-.01-.009-.013-.012-.019-.006-.009-.015-.025-.007-.01-.017-.026-.01-.015-.02-.03-.013-.02-.023-.034-.013-.02-.027-.04-.014-.02-.03-.046-.015-.023-.034-.053-.016-.024-.04-.064-.017-.025-.045-.07-.02-.03-.05-.08-.023-.034-.057-.09-.026-.038-.066-.1-.029-.04-.075-.115-.032-.045-.086-.13-.035-.05-.1-.15-.038-.054-.11-.164-.04-.06-.12-.18zm-2.8 1.74v-.002c0-.052.002-.102.006-.15.007-.105.028-.218.066-.336.028-.09.065-.173.11-.25.045-.077.11-.165.2-.261.105-.113.23-.22.375-.319.152-.102.33-.2.536-.293.307-.137.688-.264 1.136-.372.447-.107.95-.198 1.497-.268a15.4 15.4 0 0 1 1.622-.169c.31-.02.599-.03.849-.03.313 0 .559.017.73.045.169.027.313.07.436.132.12.06.21.137.274.224.052.07.09.155.113.25.025.104.038.218.038.342 0 .161-.023.31-.068.448-.044.136-.11.255-.196.358-.087.101-.2.193-.337.275-.136.08-.304.152-.5.214-.198.06-.43.113-.69.154-.26.04-.56.073-.89.096-.33.024-.7.04-1.11.04-.41 0-.78-.016-1.11-.04-.33-.023-.63-.056-.89-.096-.26-.04-.492-.093-.69-.154-.196-.062-.364-.134-.5-.214a1.33 1.33 0 0 1-.337-.275 1.086 1.086 0 0 1-.196-.358 1.4 1.4 0 0 1-.068-.448z"/>
+            </svg>
+            <h1 class="mb-4">Carica il PDF dei Turni</h1>
+        </div>
+
+        <form action="/" method="post" enctype="multipart/form-data">
+            <div class="mb-4">
+                <label class="d-block custom-file-label">
+                    <span class="d-block mb-2 fw-bold">Trascina il file o clicca per selezionare</span>
+                    <span class="text-muted">Formati supportati: .pdf</span>
+                    <input type="file" name="file" accept=".pdf" required class="custom-file-input">
+                </label>
+            </div>
+            <button type="submit" class="btn btn-upload rounded-pill">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-cloud-upload me-2" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M4.406 1.342A5.53 5.53 0 0 1 8 0c2.69 0 4.923 2 5.166 4.579C14.758 4.804 16 6.137 16 7.773 16 9.569 14.502 11 12.687 11H10a.5.5 0 0 1 0-1h2.688C13.979 10 15 8.988 15 7.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 2.825 10.328 1 8 1a4.53 4.53 0 0 0-2.941 1.1c-.757.652-1.153 1.438-1.153 2.055v.448l-.445.049C2.064 4.805 1 5.952 1 7.318 1 8.785 2.23 10 3.781 10H6a.5.5 0 0 1 0 1H3.781C1.708 11 0 9.366 0 7.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383z"/>
+                    <path fill-rule="evenodd" d="M7.646 4.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V14.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3z"/>
+                </svg>
+                Carica PDF
+            </button>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

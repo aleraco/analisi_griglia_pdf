@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Risultati Analisi Griglia</title>
+    <style>
+		.table {
+			width: 100%;
+			border-collapse: collapse;
+			margin: 20px 0;
+			font-size: 0.9em;
+		}    
+		.table th {
+			background-color: #f8f9fa;
+			color: #2c3e50;
+			font-weight: 600;
+			padding: 8px;
+        b	order-bottom: 2px solid #dee2e6;
+		}    
+		.table td {
+			padding: 8px;
+			border: 1px solid #dee2e6;
+			background-color: white;
+		}    
+		.table tbody tr:nth-child(even) {
+			background-color: #f8f9fa;
+		}		
+        .download-section {
+            margin: 30px 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        button:hover {
+            opacity: 0.8;
+        }
+        .home-button {
+            background-color: #6c757d;
+        }
+        .ics-button {
+            background-color: #28a745;
+        }
+        .cambio-turno-button {
+            background-color: #007bff;
+        }
+        .section-divider {
+            margin: 40px 0;
+            border-top: 2px solid #dee2e6;
+        }
+        .results-section {
+            margin: 30px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>📅 Risultati per {{ mese }} {{ anno }}</h1>
+    
+    <!-- Tabella Originale -->
+    <div class="results-section">
+        <h2>🔍 Tabella Originale</h2>
+        {{ original_table|safe }}
+    </div>
+
+    <!-- Tabella Tradotta -->
+    <div class="results-section">
+        <h2>🔄 Tabella Tradotta</h2>
+        {{ translated_table|safe }}
+    </div>
+
+    <!-- Download ICS -->
+    <div class="download-section">
+        <h2>📥 File ICS Generati</h2>
+        {% for nome, path in ics_files.items() %}
+            <div style="margin: 10px 0;">
+                <strong>{{ nome }}</strong>
+                <a href="{{ url_for('download_ics', nome=nome) }}">
+                    <button class="ics-button">Scarica calendario</button>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Sezione Cambio Turno -->
+    <div class="section-divider"></div>
+    <div class="download-section">
+        <h2>🔁 Ricerca Cambio Turno</h2>
+        <p>Cerca colleghi disponibili per uno scambio di turno:</p>
+        <a href="{{ url_for('cambio_turno') }}">
+            <button class="cambio-turno-button">Avvia Ricerca</button>
+        </a>
+    </div>
+
+    <!-- Torna alla Home -->
+    <div style="margin-top: 40px;">
+        <a href="{{ url_for('upload') }}">
+            <button class="home-button">🏠 Torna alla Home</button>
+        </a>
+    </div>
+</body>
+</html>

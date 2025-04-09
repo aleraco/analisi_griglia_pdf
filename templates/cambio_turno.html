@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ricerca Cambio Turno</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container { padding: 20px; max-width: 800px; }
+        .alert-list { list-style-type: none; padding-left: 0; }
+        .match-list { font-size: 1.1rem; }
+        .time-inputs { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .datalist-container { position: relative; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4">🔁 Ricerca Cambio Turno</h1>
+        
+        {% if errors %}
+            <div class="alert alert-danger">
+                <h4>Attenzione:</h4>
+                <ul class="alert-list">
+                    {% for error in errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <form method="POST" class="mb-5">
+            <div class="mb-3">
+                <label class="form-label">Il tuo cognome:</label>
+                <div class="datalist-container">
+                    <input list="nomi-dipendenti" 
+                           name="nome" 
+                           class="form-control" 
+                           placeholder="Inizia a digitare..."
+                           autocomplete="off"
+                           required>
+                    <datalist id="nomi-dipendenti">
+                        {% for nome in nomi %}
+                            <option value="{{ nome }}">
+                        {% endfor %}
+                    </datalist>
+                </div>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">Giorno del mese desiderato:</label>
+                <input type="number" 
+                       name="giorno" 
+                       class="form-control" 
+                       min="1" 
+                       max="31" 
+                       required>
+            </div>
+            
+            <div class="mb-4">
+                <label class="form-label">Turno desiderato:</label>
+                <div class="time-inputs">
+                    <select name="ora" class="form-select" required>
+                        <option value="">Seleziona orario</option>
+                        {% for ora in range(0, 24) %}
+                            <option value="{{ '%02d:00' % ora }}">{{ '%02d:00' % ora }}</option>
+                            <option value="{{ '%02d:30' % ora }}">{{ '%02d:30' % ora }}</option>
+                        {% endfor %}
+                    </select>
+                    
+                    <select name="durata" class="form-select" required>
+                        <option value="">Seleziona durata</option>
+                        <option value="4H">4 ore</option>
+                        <option value="5H">5 ore</option>
+                        <option value="6H">6 ore</option>
+                        <option value="8H">8 ore</option>
+                    </select>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary">Cerca disponibilità</button>
+        </form>
+
+        {% if matches is defined %}
+            <div class="results-section">
+                <h3>📌 Risultati per il {{ giorno }} {{ mese }} {{ anno }}</h3>
+                <p class="lead">Turno richiesto: <strong>{{ turno_richiesto }}</strong></p>
+                
+                {% if matches %}
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Colleghi disponibili:</h5>
+                            <ul class="match-list">
+                                {% for nome in matches %}
+                                    <li>{{ nome }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="alert alert-warning">
+                        Nessun collega trovato con questo turno
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        <div class="mt-4">
+            <a href="{{ url_for('result') }}" class="btn btn-secondary">
+                ← Torna ai risultati
+            </a>
+        </div>
+    </div>
+</body>
+</html>
