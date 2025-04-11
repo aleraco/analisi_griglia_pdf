@@ -9,5 +9,5 @@ una griglia pdf
 in ascissa i giorni del mese
 in ordinata una lista di nomi
 i dati all'incrocio di ogni cella sono dei turni di lavoro codificati
-questa python legge, traduce, produce file calendario per ogni dipendente
+questo python legge, traduce, produce file calendario per ogni dipendente
 e cerca un cambio turno secondo il bisogno dell'utente
